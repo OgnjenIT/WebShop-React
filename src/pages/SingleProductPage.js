@@ -48,7 +48,7 @@ const SingleProductPage = () => {
           <div className='products-center'>
               <ProductImages images={product.images}/>
               <div className='content'>
-                <h2>{product.name}</h2>
+                <h2 className='title'>{product.name}</h2>
                 <Stars stars={product.stars} reviews={product.reviews}/>
                 <h5 className='price'>{formatPrice(product.price)}</h5>
                 <p className='desc'>{product.description}</p>
@@ -61,7 +61,7 @@ const SingleProductPage = () => {
                   {product.company}
                 </p>
                 <hr></hr>
-                {product.stock &&  <AddToCart />}
+                {product.stock &&  <AddToCart product={product}/>}
               </div>
           </div>
         </section>
@@ -91,6 +91,10 @@ const Wrapper = styled.main`
     span {
       font-weight: 700;
     }
+  }
+  .title{
+    margin-top: 0.7rem;
+    text-align: start;
   }
 
   @media (min-width: 992px) {
