@@ -39,7 +39,7 @@ export const ProductsProvider = ({ children }) => {
   }
 
   const resetError = ()=>{
-    dispatch({type: "RESET_ERROR"})
+    dispatch({type: GET_SINGLE_PRODUCT_BEGIN})
   }
   const fetchProducts = async()=>{
     dispatch({type: GET_PRODUCTS_BEGIN})  

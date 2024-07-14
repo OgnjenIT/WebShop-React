@@ -43,6 +43,28 @@ const SingleProductPage = () => {
    error ? <Error /> :
       <Wrapper>
         <PageHero title={product.name.toUpperCase()} product={product}/>
+        <section className='section section-center page'>
+          <Link to='/products' className='btn'>Nazad na proizvode</Link>
+          <div className='products-center'>
+              <ProductImages images={product.images}/>
+              <div className='content'>
+                <h2>{product.name}</h2>
+                <Stars stars={product.stars} reviews={product.reviews}/>
+                <h5 className='price'>{formatPrice(product.price)}</h5>
+                <p className='desc'>{product.description}</p>
+                <p className='info'>
+                  <span>Dostupno:</span>
+                  {product.stock > 0 ? `${product.stock} Proizvoda na stanju` : `Nema na stanju`}
+                </p>
+                <p className='info'>
+                  <span>Brend: </span>
+                  {product.company}
+                </p>
+                <hr></hr>
+                {product.stock &&  <AddToCart />}
+              </div>
+          </div>
+        </section>
       </Wrapper>
 
   
