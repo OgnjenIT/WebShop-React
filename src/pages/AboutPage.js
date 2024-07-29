@@ -4,19 +4,23 @@ import { PageHero } from '../components'
 import aboutImg from '../assets/hero-bcg.jpeg'
 
 const AboutPage = () => {
-  return <main>
-    <PageHero title="O nama" />
+  return  <main>
+    <PageHero title="O nama"/>
     <Wrapper className='page section section-center'>
-    <img src={aboutImg} alt='slika'></img>
-    <article>
+      <img src={aboutImg} alt='slika'/>
+      <article>
       <h2>Nasa prica</h2>
       <div className='underline'></div>
-        <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-        </p>
-    </article>
+      <p>Culpa aliquip ex voluptate proident adipisicing ut ut sint in nulla Lorem.
+         Cillum cupidatat sit consequat minim irure mollit aute dolore. Consequat 
+         aute qui nisi in est culpa sint esse ullamco quis velit commodo culpa est.
+          Est ut ad velit sit sunt non est anim occaecat et est.
+         Id cillum nulla proident dolor magna nostrud Lorem anim eiusmod voluptate consectetur sunt sint magna.
+          Proident eu quis voluptate nostrud. Nostrud tempor deserunt id consectetur mollit cupidatat proident.
+      </p>  
+      </article>
     </Wrapper>
-  </main>
+  </main> 
 }
 
 const Wrapper = styled.section`

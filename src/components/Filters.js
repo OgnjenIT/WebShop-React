@@ -5,125 +5,129 @@ import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
 const Filters = () => {
-
-  const { 
-    filters:{
-        text,
-        category,
-        color,
-        company,
-        min_price,
-        max_price,
-        price,
-        shipping
+  const {
+  filters:{
+    text='',
+    category='',
+    company='',
+    color='',
+    min_price=0,
+    max_price=0,
+    shipping=false,
+    price=0
   },
-    updateFilters,
-    clearFilters,
-    all_products,
-    }  = useFilterContext()
+  updateFilters,
+  clearFilters,
+  all_products
+} = useFilterContext()
 
-    const companies = getUniqueValues(all_products, "company")
-    const categories = getUniqueValues(all_products, "category")
-    const colors = getUniqueValues(all_products, "colors")
-
-
+  const categories = getUniqueValues(all_products, "category")
+  const companies = getUniqueValues(all_products, "company")
+  const colors = getUniqueValues(all_products, "colors")
   return <Wrapper>
     <div className='content'>
       <form onSubmit={(e)=>{
         e.preventDefault()
       }}>
         <div className='form-control'>
-          <input type='text'
-              name='text' 
-              className='search-input' 
-              value={text}
-              onChange={updateFilters}>
-          </input>
+          <input
+          type='text' 
+          name='text'
+          className='search-input'
+          value={text}
+          onChange={updateFilters}
+          />
         </div>
+
         <div className='form-control'>
-          <h5>Kategorije</h5>
-          {categories.map((c,index)=>{
-            return <button
+          <h5>kategorije</h5>
+          {categories.map((c, index)=>{
+            return <button 
             key={index}
             onClick={updateFilters}
-            name='category'
+            name="category"
+            className={`${c === category.toLowerCase() ? "active" : null}`}
             value={c}
-            className={`${category === c && "active"}`}
-            >
-              {c}
-            </button>
+            >{c}</button>
           })}
         </div>
+        
         <div className='form-control'>
           <h5>Kompanije</h5>
-          {companies.map((c,index)=>{
-            return <button
-            key={index}
-            onClick={updateFilters}
-            name='company'
-            value={c}
-            className={`${company=== c && "active"}`}
-            >
-              {c}
-            </button>
-          })}
+          <select 
+          name='company' 
+          className='company' 
+          value={company}
+          onChange={updateFilters}
+          >
+            {companies.map((c, index)=>{
+              return <option key={index} value={c}>{c}</option>
+            })}
+          </select>
         </div>
+            {/* boje */}
         <div className='form-control'>
           <h5>Boje</h5>
-          <div className='colors'>
-            {colors.map((c, index) => {
-              return c === "all" ? (
-                <button
-                  key={index}
-                  onClick={updateFilters}
-                  name='color'
-                  className={color === c ? "active" : ""}
-                >
-                  Sve
-                </button>
-              ) : (
-                <button
-                  key={index}
-                  onClick={updateFilters}
-                  name='color'
-                  style={{ background: c }}
-                  className={`${color === c ? "active" : ""} color-btn`}
-                  value={c}
-                >
-                  {color === c && <FaCheck />}
-                </button>
-              );
-            })}
-          </div>
-
-
-            <div className='form-control'>
-              <h5>Cijena do: </h5>
-              <p className='price'>{formatPrice(price)}</p>
-              <input type='range'
-              name='price'
-              onChange={updateFilters}
-              min={min_price}
-              max={max_price}
-              value={price}
-              ></input>
-            </div>
-          
-
-          <div className='form-control shipping'>
-            <label htmlFor='shipping'>Besplatna postarina</label>
-            <input 
-              type='checkbox' 
-              name='shipping'
-              id='shipping'
-              onChange={updateFilters}
-              checked={shipping} ></input>
+        <div className='colors'>
+          {colors.map((c,index)=>{
+            if(c==='all'){
+              return <button
+              key={index} 
+              name='color' 
+              style={{
+               background: c
+             }}
+             className={`all-btn ${color === "all" && 'active'}`}
+             data-color='all'
+             onClick={updateFilters}
+             >
+               sve
+             </button>
+            }
+            return <button
+             key={index} 
+             name='color' 
+             style={{
+              background: c
+            }}
+            className={`color-btn ${color === c && 'active'}`}
+            data-color={c}
+            onClick={updateFilters}
+            >
+              {color === c && <FaCheck />}
+            </button>
+          })}
           </div>
         </div>
+
+          {/* cijena */}
+        <div className='form-control'>
+          <h5>Cijena do</h5>
+          <p className='price'>{formatPrice(price)}</p>
+          <input
+          type='range' 
+          name='price'
+          onChange={updateFilters}
+          min={min_price}
+          max={max_price}
+          value={price}
+           />
+        </div>
+        {/* postarina */}
+        <div className='form-control shipping'>
+          <label htmlFor='shipping'>Besplatna postarina</label>
+          <input type='checkbox' name='shipping' id='shipping'
+          onChange={updateFilters}
+          checked={shipping}
+          ></input>
+        </div>
+
       </form>
-      
-          <button className='clear-btn'
-          onClick={clearFilters}>Ocisti filtere</button>
+          {/* ocisti filtere */}
+          <button className='clear-btn' onClick={clearFilters}>
+            ocisti filtere
+          </button>
+
     </div>
   </Wrapper>
 }

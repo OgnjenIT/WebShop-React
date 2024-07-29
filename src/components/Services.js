@@ -4,24 +4,27 @@ import { services } from '../utils/constants'
 
 const Services = () => {
   return <Wrapper>
-    <div className='section-center'>
-      <article className='header'>
-          <h3>Usluge</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing 
-            and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
+      <div className='section-center'>
+        <article className='header'>
+          <h3>services</h3>
+          <p> 
+            Id culpa nulla consectetur irure pariatur deserunt in officia id voluptate ex.
+            Ullamco esse enim ex exercitation duis aute duis anim id enim irure elit id.
+            Ea proident est sit excepteur ipsum.
+          </p>
           <div className='services-center'>
-            {services.map(service=>{
-              const {id,icon,title,text} = service
-              return <article key={id} className='service'>
+            {services.map((service, index)=>{
+              const { icon, title, text } = service;
+              return <article key={index} className='service'>
                 <span className='icon'>{icon}</span>
                 <h4>{title}</h4>
                 <p>{text}</p>
               </article>
             })}
           </div>
-      </article>
-    </div>
-  </Wrapper>
+        </article>
+      </div>
+     </Wrapper>
 }
 
 const Wrapper = styled.section`

@@ -6,9 +6,11 @@ import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
 
 const CartTotals = () => {
-  
+
   const {total_amount, shipping_fee} = useCartContext()
-  
+
+  const {myUser, loginWithRedirect} = useUserContext()
+
   return <Wrapper>
     <div>
       <article>
@@ -18,14 +20,18 @@ const CartTotals = () => {
         <p>
           postarina: <span>{formatPrice(shipping_fee)}</span>
         </p>
-        <hr></hr>
-        <h4>ukupna cijena: <span>{formatPrice(total_amount + shipping_fee)}</span>
+        <hr/>
+        <h4>
+          ukupna cijena:
+          <span>{formatPrice(total_amount + shipping_fee)}</span>
         </h4>
       </article>
-      <Link to='/checkout' className='btn'>Placanje</Link>
+      {myUser ? <Link to='/checkout' className="btn">placanje</Link>:
+      <button className='btn' onClick={loginWithRedirect}>Prijavi se</button>
+      }
+      
     </div>
   </Wrapper>
-
 }
 
 const Wrapper = styled.section`

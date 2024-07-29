@@ -1,37 +1,43 @@
 import React from 'react'
 import { useFilterContext } from '../context/filter_context'
-import { BsFillGridFill, BsList } from 'react-icons/bs'
+import { BsFillGridFill, BsGridFill, BsList } from 'react-icons/bs'
 import styled from 'styled-components'
-
-
 const Sort = () => {
 
   const {
-    grid_view, 
     filtered_products: products,
-    setGridView,
+    grid_view,
     setListView,
+    setGridView,
     sort,
-    updateSort,
-  } =  useFilterContext()
+    updateSort
+  } = useFilterContext()
+
   return <Wrapper>
     <div className='btn-container'>
-      <button className={`${grid_view && "active"}`} onClick={setGridView}>
-        <BsFillGridFill/>
+      <button className={`${grid_view ? "active" : null}`}
+      onClick={setGridView}
+      >
+        <BsGridFill />
       </button>
-      <button className={`${!grid_view && "active" }`} onClick={setListView}>
-        <BsList/>
+      <button className={`${!grid_view ? "active" : null}`}
+      onClick={setListView}
+      >
+        <BsList />
       </button>
     </div>
-    <p>{products.length} Proizvoda</p>
+    <p>{products.length} proizvoda</p>
     <form>
-      <label htmlFor='sort'>Sortiraj po:</label>
-      <select name='sort' id='sort' className='sort-input'
-              value={sort} onChange={updateSort}> 
+      <label htmlFor='sort'>Sortiraj po</label>
+      <select name='sort' id='sort' className='sort-input' 
+      value={sort}
+      onChange={updateSort}
+      >
+        <option value="odaberi-opciju">Odaberi</option>
         <option value="price-lowest">Najniza cijena</option>
         <option value="price-highest">Najvisa cijena</option>
-        <option value="name-a">A - Z</option>
-        <option value="name-z">Z - A</option>
+        <option value="name-a">A-Z</option>
+        <option value="name-z">Z-A</option>
       </select>
     </form>
   </Wrapper>

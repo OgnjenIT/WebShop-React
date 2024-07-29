@@ -4,14 +4,14 @@ import styled from 'styled-components'
 const CartColumns = () => {
   return <Wrapper>
     <div className='content'>
-      <h5>Prozivod</h5>
-      <h5>Cijena</h5>
-      <h5>Kolicina</h5>
-      <h5>Ukupna cijena</h5>
+      <h5>proizvod</h5>
+      <h5>cijena</h5>
+      <h5>kolicina</h5>
+      <h5>ukupna cijena</h5>
       <span></span>
     </div>
-    <hr></hr>
-      </Wrapper>
+    <hr />
+  </Wrapper>
 }
 
 const Wrapper = styled.div`

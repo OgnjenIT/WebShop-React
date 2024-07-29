@@ -1,30 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
-const Stars = ({reviews, stars}) => {
+const Stars = ({stars,reviews}) => {
 
-  const tempStars =[
-    <BsStarFill />,
-    <BsStarFill />,
-    <BsStarFill />,
-    <BsStarHalf />,
-    <BsStar />,
-  ]
-  const niz = Array.from({length: 5},(_,index)=>{
+  const [index, setIndex] = useState(0)
+
+  const tempStars=Array.from({ length: 5}, (item,index)=>{
     return <span key={index}>
-      {stars >= index +  1 ? <BsStarFill /> :
-      stars >= index + 0.5 ? <BsStarHalf /> :
-      <BsStar />}
+      {stars >= index + 1 ? 
+      <BsStarFill /> : stars >= index + 0.5 ? 
+      <BsStarHalf /> : 
+      <BsStar />  
+    }
     </span>
   })
 
-  return <Wrapper> 
+  return <Wrapper>
     <div className='stars'>
-      {niz.map(star=>{
+      {tempStars.map(star=>{
         return star
       })}
     </div>
-    <p className='reviews'>{reviews} Recenzija</p>
+    <p className='reviews'>({reviews}) recenzija</p>
   </Wrapper>
 }
 

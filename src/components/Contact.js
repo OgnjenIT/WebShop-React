@@ -1,21 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-
 const Contact = () => {
   return <Wrapper>
-    <div className='section-center'>
-      <h3>Prijavi se na nasu mail listu</h3>
-      <div className='content'>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
-        <form className='contact-form'>
-          <input type='email' name='email' className='form-input' placeholder='Unesite email..'></input>
-          <button type='submit' className='submit-btn'> 
-            Pretplati se!
-          </button>
-        </form>
+      <div className='section-center'>
+        <h3>Prijavi se na nasu mejl listu</h3>
+        <div className='content'>
+          <p>
+          Id culpa nulla consectetur irure pariatur deserunt in officia id voluptate ex.
+      Ullamco esse enim ex exercitation duis aute duis anim id enim irure elit id.
+      Ea proident est sit excepteur ipsum.
+          </p>
+          <form className='contact-form'
+          action="https://formspree.io/f/mgvwwddq"
+          method="POST"
+          >
+            <input type='email' name='email' id='email' className='form-input' 
+            placeholder='unesite email'
+            />
+            <button type='submit' className='submit-btn'>
+              Pretplati se
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
   </Wrapper>
+
 }
 const Wrapper = styled.section`
   padding: 5rem 0;

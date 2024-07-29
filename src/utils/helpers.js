@@ -1,21 +1,18 @@
+
 export const formatPrice = (number) => {
     const newNumber = Intl.NumberFormat("en-US", {
-        style: "currency",
+        style:"currency",
         currency: "USD"
     }).format(number/100)
-    return newNumber;
+    return newNumber
 }
 
-export const getUniqueValues = (products, type) => {
-    let filterType = products.map(product=>{
-        return product[type]
+export const getUniqueValues = (data, type) => {
+    let unique = data.map(item=>{
+        return item[type]
     })
-
-    if(type === "colors"){
-        filterType = filterType.flat()
+    if(type==="colors"){
+        unique=unique.flat()
     }
-    
-
-
-    return ["all" ,...new Set(filterType)]
-}
+    return ["all", ...new Set(unique)]
+}   

@@ -4,9 +4,10 @@ const Footer = () => {
   return <Wrapper>
     <h5>
       &copy; {new Date().getFullYear()}
-      <span> Nasa prodavnica</span>
+      <span> NASA PRODAVNICA</span>
     </h5>
-    <h5> Sva prava zadrzana</h5>
+    <h5>Sva prava zadrzana</h5>
+
   </Wrapper>
 }
 

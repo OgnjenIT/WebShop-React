@@ -8,21 +8,33 @@ import { useUserContext } from '../context/user_context'
 
 const CartButtons = () => {
 
-  const { closeSidebar } = useProductsContext()
+
+  const {loginWithRedirect, myUser, logout} = useUserContext()
+
+  const {closeSidebar} = useProductsContext()
   const {total_items} = useCartContext()
 
   return <Wrapper className='cart-btn-wrapper'>
     <Link to='/cart' className='cart-btn' onClick={closeSidebar}>
-   
+    Korpa
     <span className='cart-container'>
-      Korpa <FaShoppingCart />
-      <span className='cart-value'>{total_items}    </span>
+      <FaShoppingCart />
+      <span className='cart-value'>{total_items}</span>
     </span>
     </Link>
-    <button className='auth-btn' type='button' onClick={closeSidebar}>
+    {!myUser ?  <button className='auth-btn' type='button' onClick={loginWithRedirect}>
       Prijava
       <FaUserPlus />
+    </button> :
+     <button className='auth-btn' type='button' onClick={()=>{
+      logout({returnTo: window.location.origin})
+    }}>
+      Odjava
+      <FaUserMinus />
     </button>
+    }
+   
+   
   </Wrapper>
 }
 
@@ -77,7 +89,6 @@ const Wrapper = styled.div`
     svg {
       margin-left: 5px;
     }
-    margin-left: 20px;
   }
 `
 export default CartButtons

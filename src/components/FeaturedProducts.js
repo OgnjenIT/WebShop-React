@@ -7,17 +7,17 @@ import Loading from './Loading'
 import Product from './Product'
 
 const FeaturedProducts = () => {
-    const {
-      products_loading: loading,
-      products_error: error,
-      products_featured: featured,
-    } = useProductsContext()
+
+  const {
+    products_loading:loading,
+    products_error:error,
+    featured_products:featured
+  } = useProductsContext()
 
 
-  
   return loading ? <Loading /> :
-   error ? <Error /> :
-   <Wrapper className='section'>
+  error ? <Error /> :
+  <Wrapper className='section'>
     <div className='title'>
       <h2>Izdvojeni proizvodi</h2>
       <div className='underline'></div>
@@ -27,7 +27,7 @@ const FeaturedProducts = () => {
         return <Product key={product.id} {...product} />
       })}
     </div>
-   </Wrapper>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`

@@ -15,7 +15,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const SingleProductPage = () => {
-  const {id} = useParams() 
+
+  const {id} = useParams()
   const history = useHistory()
 
 
@@ -23,51 +24,57 @@ const SingleProductPage = () => {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
-    fetchSingleProduct,
-    resetError
-  } = useProductsContext()
+    fetchSingleProduct
+   } = useProductsContext()
 
-  useEffect(()=>{
+   useEffect(()=>{
     fetchSingleProduct(id)
-  },[id])
+   }, [id])
 
-  if(error){
-    setTimeout(()=>{
-      history.push("/")
-      resetError()
-   },2000)
-  }
+   useEffect(()=>{
+      setTimeout(()=>{
+        if(error){
+          history.push("/")
+        }
+      }, 3000)
+   }, [])
+
+   const { name,stars, reviews, id: sku, company, images, price, stock } = product
 
 
   return loading ? <Loading /> :
-   error ? <Error /> :
-      <Wrapper>
-        <PageHero title={product.name.toUpperCase()} product={product}/>
-        <section className='section section-center page'>
-          <Link to='/products' className='btn'>Nazad na proizvode</Link>
-          <div className='products-center'>
-              <ProductImages images={product.images}/>
-              <div className='content'>
-                <h2 className='title'>{product.name}</h2>
-                <Stars stars={product.stars} reviews={product.reviews}/>
-                <h5 className='price'>{formatPrice(product.price)}</h5>
-                <p className='desc'>{product.description}</p>
-                <p className='info'>
-                  <span>Dostupno:</span>
-                  {product.stock > 0 ? `${product.stock} Proizvoda na stanju` : `Nema na stanju`}
-                </p>
-                <p className='info'>
-                  <span>Brend: </span>
-                  {product.company}
-                </p>
-                <hr></hr>
-                {product.stock &&  <AddToCart product={product}/>}
-              </div>
-          </div>
-        </section>
-      </Wrapper>
-
-  
+  error ? <Error /> :
+  <Wrapper>
+    <PageHero title={product.name?.toUpperCase()} product={product} />
+    <section className='section section-center page'>
+      <Link to='/products' className='btn'>
+        Nazad na proizvode
+      </Link>
+      <div className='products-center'>
+        <ProductImages images={images}/>
+        <div className='content'>
+          <h2>{product.name}</h2>
+          <Stars stars={stars} reviews={reviews}/>
+          <h5 className='price'>{formatPrice(product.price)}</h5>
+          <p className='desc'>{product.description}</p>
+          <p className='info'>
+            <span>dostupno:</span>
+            {product.stock > 0 ? `${product.stock} proizvoda na stanju` : "Nije na stanju"}
+          </p>
+          <p className='info'>
+            <span>ID : </span>
+            {product.id}
+          </p>
+          <p className='info'>
+            <span>Brend:</span>
+            {product.company}
+          </p>
+          <hr />
+          {product.stock && <AddToCart product={product}/>}
+        </div>
+      </div>
+    </section>
+  </Wrapper>
 }
 
 const Wrapper = styled.main`
@@ -91,10 +98,6 @@ const Wrapper = styled.main`
     span {
       font-weight: 700;
     }
-  }
-  .title{
-    margin-top: 0.7rem;
-    text-align: start;
   }
 
   @media (min-width: 992px) {

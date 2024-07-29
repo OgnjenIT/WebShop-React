@@ -5,18 +5,22 @@ import heroBcg from '../assets/hero-bcg.jpeg'
 import heroBcg2 from '../assets/hero-bcg-2.jpeg'
 
 const Hero = () => {
-  return <Wrapper className='section-center'>
-      <div className='content'>
-        <h1>Dizajnirajte svoju zonu <br /> komfora</h1>
-        <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-        </p>
-        <Link to='/products' className='btn hero-btn'>Kupi sada</Link>
-      </div>
-      <article className='img-container'>
-        <img src={heroBcg} className='main-img' alt='slika1'/>
-        <img src={heroBcg2} className='accent-img' alt='slika2'/>
-      </article>
+  return <Wrapper className='section-center'> 
+  <div className='content'>
+    <h1>Dizajnirajte svoju zonu <br /> komfora</h1>
+    <p>
+      Id culpa nulla consectetur irure pariatur deserunt in officia id voluptate ex.
+      Ullamco esse enim ex exercitation duis aute duis anim id enim irure elit id.
+      Ea proident est sit excepteur ipsum.
+    </p>
+    <Link to='/products' className="btn hero-btn">
+     Kupi sada
+    </Link>
+  </div>
+  <article className='img-container'>
+    <img src={heroBcg} alt='main-img' className='main-img'/>
+    <img src={heroBcg2} alt='accent-img' className='accent-img'/>
+  </article>
   </Wrapper>
 }
 

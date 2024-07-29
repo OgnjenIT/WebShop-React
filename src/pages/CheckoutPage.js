@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 
 const CheckoutPage = () => {
   return <main>
-    <PageHero title="Naplata" />
-    <Wrapper className='page'>Naplata</Wrapper>
+    <PageHero title="Naplata"/>
+    <Wrapper className='page'>Naplata...</Wrapper>
   </main>
 }
 const Wrapper = styled.div``
