@@ -52,11 +52,12 @@ const Filters = () => {
           })}
         </div>
         
+        
         <div className='form-control'>
           <h5>Kompanije</h5>
           <select 
           name='company' 
-          className='company' 
+          className='company'
           value={company}
           onChange={updateFilters}
           >
@@ -65,6 +66,8 @@ const Filters = () => {
             })}
           </select>
         </div>
+
+
             {/* boje */}
         <div className='form-control'>
           <h5>Boje</h5>
